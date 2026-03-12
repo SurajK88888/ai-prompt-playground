@@ -1,0 +1,39 @@
+LLM Provider Architecture
+
+Why?
+
+Because we want multi-model comparison.
+
+Architecture:
+
+Prompt
+   ↓
+LLM Service
+   ↓
+Provider Layer
+   ↓
+OpenAI / Groq / Claude
+
+This architecture is used in many AI frameworks.
+
+
+1. Valid Roles:
+system
+user
+assistant
+
+2. Why Service Layer?
+
+Instead of calling provider directly from API.
+
+Architecture becomes:
+
+API
+ ↓
+Service Layer
+ ↓
+Provider Layer
+ ↓
+LLM
+
+This separation is used in large production systems.

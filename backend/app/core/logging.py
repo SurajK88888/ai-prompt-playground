@@ -17,7 +17,8 @@ def setup_logging():
         handlers=[logging.FileHandler(LOGS_PATH/"app.log"),logging.StreamHandler()]
     )
 
-    logger = logging.getLogger("ai-prompt-playgrounf")
+    # logger = logging.getLogger(__name__)
+    logger = logging.getLogger("ai-prompt-playground")
     return logger
 
 logger = setup_logging()
