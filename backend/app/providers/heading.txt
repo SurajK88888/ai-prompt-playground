@@ -37,3 +37,27 @@ Provider Layer
 LLM
 
 This separation is used in large production systems.
+
+3. Why Provider Layer?
+Because we want to support multiple providers.
+Provider Layer abstracts away the differences between providers.
+For example, OpenAI and Groq have different APIs.
+Provider Layer provides a common interface for all providers.
+
+4. Benefits of this Architecture:
+- Flexibility: We can easily switch between providers without changing the API or service layer.
+- Scalability: We can add new providers without affecting the existing codebase.
+- Maintainability: We can isolate provider-specific code in the provider layer, making it easier to maintain and update.
+- Testing: We can mock the provider layer for testing purposes, allowing us to test the service layer independently of the providers.
+5. Conclusion:This architecture allows us to build a robust and flexible system for interacting with multiple LLM providers. By
+
+6. Endpoints Architecture:
+Client
+  ↓
+API Route
+  ↓
+LLM Service
+  ↓
+Provider
+  ↓
+OpenAI

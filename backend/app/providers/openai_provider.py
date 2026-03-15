@@ -2,12 +2,13 @@ from openai import AsyncOpenAI
 from app.core.config import settings
 from app.core.logging import logger
 from app.providers.base_Provider import BaseLLMProvider
+from app.core.cost_tracker import calculate_cost
 
 
 class OpenAIProvider(BaseLLMProvider):
     def __init__(self):
         self.client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
-        
+   
     async def generate_response(self,prompt:str,model:str="gpt-4o-mini"):
         logger.info("Sending request to OpenAI")
         
@@ -19,11 +20,19 @@ class OpenAIProvider(BaseLLMProvider):
         ) 
         
         text = response.choices[0].message.content
-        tokens_used = response.usage.total_tokens
+        prompt_token = response.usage.prompt_tokens
+        completion_tokens = response.usage.completion_tokens
+        total_tokens = response.usage.total_tokens
+        
+        total_cost = calculate_cost(prompt_tokens=prompt_tokens,completion_tokens=completion_tokens,model=model)
+       
+        logger.info(f"Tokens used: {total_tokens}")
+        logger.info(f"Cost: ${cost}")
         
         return {
             "response":text,
-            "tokens_used":tokens_used
+            "tokens_used":total_tokens,
+            "total_cost":total_cost
         }
 
 

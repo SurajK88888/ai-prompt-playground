@@ -1,0 +1,52 @@
+ai-prompt-playground/
+
+backend/
+│
+├── app/
+│   ├── main.py
+│   │
+│   ├── api/
+│   │   └── prompt_routes.py
+│   │
+│   ├── services/
+│   │   └── llm_service.py
+│   │
+│   ├── providers/
+│   │   └── openai_provider.py
+│   │
+│   ├── models/
+│   │   └── prompt_model.py
+│   │
+│   ├── schemas/
+│   │   └── prompt_schema.py
+│   │
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── logging.py
+│   │   └── cost_tracker.py
+│   │
+│   ├── db/
+│   │   └── database.py
+│   │
+│   └── utils/
+│       └── token_counter.py
+│
+├── requirements.txt
+├── .env
+└── README.md
+
+
+
+
+1. Memory Management in Python
+Memory management in Python is a crucial aspect of the language that allows developers to focus on 
+writing code without worrying about manual memory allocation and deallocation. 
+Python uses a private heap to manage memory for all objects and data structures. 
+This heap is not directly accessible to the programmer, and Python handles memory management 
+automatically through a combination of reference counting and garbage collection.
+
+Python's memory management is an automatic system that handles the 
+allocation and deallocation of memory for all Python objects and data structures within a private heap.
+
+2. What is heap?
+A specific data structure used for efficient ordering, and a region of a computer's memory for dynamic allocation.
