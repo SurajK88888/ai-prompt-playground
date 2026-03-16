@@ -50,3 +50,8 @@ allocation and deallocation of memory for all Python objects and data structures
 
 2. What is heap?
 A specific data structure used for efficient ordering, and a region of a computer's memory for dynamic allocation.
+
+3. Lazy Connecting 
+The Engine, when first returned by create_engine(), has not actually tried to connect to the database yet;
+that happens only the first time it is asked to perform a task against the database. 
+This is a software design pattern known as lazy initialization.

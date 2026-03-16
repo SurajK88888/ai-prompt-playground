@@ -27,7 +27,7 @@ class OpenAIProvider(BaseLLMProvider):
         total_cost = calculate_cost(prompt_tokens=prompt_tokens,completion_tokens=completion_tokens,model=model)
        
         logger.info(f"Tokens used: {total_tokens}")
-        logger.info(f"Cost: ${cost}")
+        logger.info(f"Cost: ${total_cost}")
         
         return {
             "response":text,
