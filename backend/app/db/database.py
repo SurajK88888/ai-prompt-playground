@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 DATABASE_URL = settings.DATABASE_URL
 
+# .env → config.py → database.py
 
 # Create an SQL database
 # Lazy connecting is done internally

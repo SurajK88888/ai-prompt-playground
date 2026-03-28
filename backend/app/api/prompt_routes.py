@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,Depends
 from app.services.llm_service import LLMService
 from app.schemas.prompt_schema import PromptRequest,PromptResponse
 from app.core.logging import logger

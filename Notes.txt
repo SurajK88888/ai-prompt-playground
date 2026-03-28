@@ -55,3 +55,74 @@ A specific data structure used for efficient ordering, and a region of a compute
 The Engine, when first returned by create_engine(), has not actually tried to connect to the database yet;
 that happens only the first time it is asked to perform a task against the database. 
 This is a software design pattern known as lazy initialization.
+4. Difference between Model and Schema
+In short: The Schema is the "Check" at the door. The Model is the "Storage" in the basement.
+
+- The Simple Explanation
+Imagine you are running a High-Security Bank.
+
+The Model (The Vault): This is the heavy, permanent safe inside the bank. It has specific slots for gold, cash, and documents. You don't let customers touch the vault directly.
+
+The Schema (The Deposit Slip): This is the piece of paper the customer fills out at the front desk. It validates that they wrote a name, an amount, and a date. If the paper is filled out correctly, the teller takes the information and puts the actual money into the Vault.
+
+In short: The Schema is the "Check" at the door. The Model is the "Storage" in the basement.
+
+- The Technical Explanation
+-------The Model (SQLAlchemy)
+A Model is a Python class that represents a Database Table. Its job is to talk to the Database (PostgreSQL, SQLite, etc.). It defines things like:
+
+Primary Keys (IDs)
+
+Foreign Keys (Relationships)
+
+Database Types (Integer, Text, DateTime)
+
+------The Schema (Pydantic)
+A Schema (in FastAPI) is a Python class that represents the Data Shape coming in or out of an API. Its job is to talk to the Internet. It defines things like:
+
+Is this a valid Email?
+
+Is this string too long?
+
+Is this field required or optional?
+
+------The Code Example (Prompt History)
+Here is how they work together in a real project. Notice how the Schema handles the "User Input" and the Model handles the "Database Storage."
+
+--The Schema (The "Entry Ticket")
+code example:
+from pydantic import BaseModel, Field
+
+class PromptCreate(BaseModel):
+    # We only ask the user for the prompt
+    user_prompt: str = Field(..., min_length=1, max_length=1000)
+    model_preference: str = "gpt-4" 
+    
+    # Notice: We DON'T include 'id' or 'created_at' because 
+    # the user shouldn't provide those.
+--The Model (The "Vault Slot")
+code example:
+from sqlalchemy.orm import Mapped, mapped_column
+from datetime import datetime
+
+class PromptModel(Base):
+    __tablename__ = "prompts"
+
+    id: Mapped[int] = mapped_column(primary_key=True) # DB generates this
+    user_prompt: Mapped[str]
+    model_used: Mapped[str]
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+
+- Why do we need both?
+If you used the Model for everything, a hacker could send a piece of data like {"id": 999} in their API request and potentially overwrite your database IDs.
+
+By using a Schema, you act as a filter. You say: "I only accept user_prompt. I don't care what else you send; it's not getting into my Vault."
+
+-----The "Correct" Workflow
+--->FastAPI receives data from the internet.
+
+--->Pydantic Schema checks if the data is valid (is it a string? is it empty?).
+
+--->If valid, you convert that data into a SQLAlchemy Model object.
+
+--->SQLAlchemy saves that object into the database.

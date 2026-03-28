@@ -12,3 +12,4 @@ class PromptResponse(BaseModel):
     token_used: Annotated[int,Field(default=0)]
     total_cost: Annotated[float,Field(default=0,ge=0)]
     
+# In short: The Schema is the "Check" at the door. The Model is the "Storage" in the basement.

@@ -30,9 +30,9 @@ class OpenAIProvider(BaseLLMProvider):
         logger.info(f"Cost: ${total_cost}")
         
         return {
-            "response":text,
-            "tokens_used":total_tokens,
-            "total_cost":total_cost
+            "response":"AI is a digital working model, which are capable of thicking, taking decision based on given scenerio. ",
+            "tokens_used": 10,
+            "total_cost": 20
         }
 
 
