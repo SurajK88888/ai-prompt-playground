@@ -1,6 +1,7 @@
 from fastapi import APIRouter,Depends
 from app.services.llm_service import LLMService
 from app.schemas.prompt_schema import PromptRequest,PromptResponse
+from app.schemas.prompt_schema import CompareRequest, CompareResponse
 from app.core.logging import logger
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,4 +27,16 @@ async def test_prompt(request:PromptRequest,db: AsyncSession = Depends(get_db)):
         cost=result.get("total_cost")
     )
     
+    return result
+
+@router.post("/prompt/compare", response_model=CompareResponse)
+async def compare_prompt(request: CompareRequest):
+
+    logger.info("Multi-model comparison request received")
+
+    result = await llm_service.compare(
+        prompt=request.prompt,
+        models=request.models
+    )
+
     return result

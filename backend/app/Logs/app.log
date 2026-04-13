@@ -23,3 +23,4 @@
 2026-03-15 15:41:32,972 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
 2026-03-15 16:04:25,404 - INFO - ai-prompt-playground - Prompt received
 2026-03-15 16:04:25,405 - INFO - ai-prompt-playground - Sending request to OpenAI
+2026-03-21 09:31:18,074 - INFO - ai-prompt-playground - Root endpoint called
