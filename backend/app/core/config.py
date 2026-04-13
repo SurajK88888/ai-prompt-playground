@@ -15,6 +15,8 @@ class Settings:
     APP_NAME:str = os.getenv("APP_NAME","AI Prompt Playground")
     ENVIRONMENT:str = os.getenv("ENVIRONMENT","development")
     OPENAI_API_KEY:str = os.getenv("OPENAI_API_KEY")
+    GROQ_API_KEY:str = os.getenv("GROQ_API_KEY")
+    COHERE_API_KEY:str = os.getenv("COHERE_API_KEY")
     LOG_LEVEL:str = os.getenv("LOG_LEVEL", "INFO")
     DATABASE_URL = os.getenv("DATABASE_URL")    
     

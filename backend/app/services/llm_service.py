@@ -1,5 +1,6 @@
 from app.providers.openai_provider import OpenAIProvider
 from app.providers.groq_provider import GroqProvider
+from app.providers.cohere_provider import CohereProvider
 from app.services.cache_service import CacheService
 from app.core.logging import logger
 
@@ -9,6 +10,7 @@ class LLMService:
     def __init__(self):
         self.openai_provider = OpenAIProvider()
         self.groq_provider = GroqProvider()
+        self.cohere_provider = CohereProvider()
         self.cache_service = CacheService()
     
     async def generate(self,prompt:str,model:str):
@@ -27,13 +29,15 @@ class LLMService:
         # 2. Call LLm
         openai_result = await self.openai_provider.generate_response(prompt=prompt,model=model)
         # groq_result = await self.groq_provider.generate_response(prompt=prompt,model=model)
+        # cohere_result = await self.cohere_provider.generate_response(prompt=prompt,model=model)
         
         # 3. Store in cache
         await self.cache_service.set(cache_key, openai_result)
         # await self.cache_service.set(cache_key, groq_result)
+        # await self.cache_service.set(cache_key, cohere_result)
         
         print(result)
-        # return {"openai_result": openai_result,"groq_result":groq_result}
+        # return {"openai_result": openai_result,"groq_result":groq_result,"cohere_result":cohere_result}
         return openai_result
     
     async def compare(self, prompt:str,models:list):
@@ -41,11 +45,15 @@ class LLMService:
         for model in models:
             if model == "openai":
                 tasks.append(
-                    await self.openai_provider.generate_response(prompt=prompt,model=model)
+                    self.openai_provider.generate_response(prompt=prompt,model=model)
                 )
             elif model == "groq":
                 tasks.append(
-                    await self.groq_provider.generate_response(prompt=prompt,model=model)
+                    self.groq_provider.generate_response(prompt=prompt,model=model)
+                )
+            elif model == "cohere":
+                tasks.append(
+                    self.cohere_provider.generate_response(prompt=prompt,model=model)
                 )
         results = await asyncio.gather(*tasks)
         output = {}

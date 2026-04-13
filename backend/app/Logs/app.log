@@ -24,3 +24,23 @@
 2026-03-15 16:04:25,404 - INFO - ai-prompt-playground - Prompt received
 2026-03-15 16:04:25,405 - INFO - ai-prompt-playground - Sending request to OpenAI
 2026-03-21 09:31:18,074 - INFO - ai-prompt-playground - Root endpoint called
+2026-04-13 22:32:42,736 - INFO - ai-prompt-playground - Root endpoint called
+2026-04-13 22:35:35,241 - INFO - ai-prompt-playground - Root endpoint called
+2026-04-13 22:37:11,477 - INFO - ai-prompt-playground - Root endpoint called
+2026-04-13 22:49:35,309 - INFO - ai-prompt-playground - Multi-model comparison request received
+2026-04-13 22:54:59,377 - INFO - ai-prompt-playground - Multi-model comparison request received
+2026-04-13 22:56:36,674 - INFO - ai-prompt-playground - Multi-model comparison request received
+2026-04-13 22:56:36,675 - INFO - ai-prompt-playground - Sending request to OpenAI
+2026-04-13 22:56:42,895 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-04-13 22:59:04,595 - INFO - ai-prompt-playground - Multi-model comparison request received
+2026-04-13 22:59:04,597 - INFO - ai-prompt-playground - Sending request to OpenAI
+2026-04-13 22:59:04,599 - INFO - ai-prompt-playground - Sending request to Cohere
+2026-04-13 22:59:04,600 - INFO - ai-prompt-playground - Sending request to Groq
+2026-04-13 22:59:10,648 - INFO - ai-prompt-playground - Multi-model comparison request received
+2026-04-13 22:59:10,649 - INFO - ai-prompt-playground - Sending request to OpenAI
+2026-04-13 22:59:10,650 - INFO - ai-prompt-playground - Sending request to Cohere
+2026-04-13 22:59:10,651 - INFO - ai-prompt-playground - Sending request to Groq
+2026-04-13 23:10:55,315 - INFO - ai-prompt-playground - Multi-model comparison request received
+2026-04-13 23:10:55,316 - INFO - ai-prompt-playground - Sending request to OpenAI
+2026-04-13 23:10:55,319 - INFO - ai-prompt-playground - Sending request to Cohere
+2026-04-13 23:10:55,319 - INFO - ai-prompt-playground - Sending request to Groq

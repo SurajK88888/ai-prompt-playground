@@ -34,7 +34,7 @@ async def compare_prompt(request: CompareRequest):
 
     logger.info("Multi-model comparison request received")
 
-    result = await llm_service.compare(
+    result = await llmservice.compare(
         prompt=request.prompt,
         models=request.models
     )
